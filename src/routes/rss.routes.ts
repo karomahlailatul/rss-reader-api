@@ -3,6 +3,7 @@ import RSS from "../controllers/rss.controllers";
 
 const router = express.Router();
 
-router.get("/:type", RSS.CNN);
+router.get("/custom-url", RSS.CustomURL);
+router.get("/:type", RSS.Limited);
 
 export default router;

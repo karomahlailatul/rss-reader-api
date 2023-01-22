@@ -3,7 +3,7 @@ import { resultHelper } from "../helpers/result.helper";
 import Parser from "rss-parser";
 
 const RSS = {
-  CNN: async (req: Request, res: Response) => {
+  Limited: async (req: Request, res: Response) => {
     try {
       const Type = req.params.type.toLocaleLowerCase();
       const parser = new Parser();
@@ -32,6 +32,17 @@ const RSS = {
             "RSS Type Error , Hanya Tersedia CNN, CNBC, KUMPARAN, MEDIAINDONESIA, Dan VICE"
           );
       }
+      const feed = await parser.parseURL(URL);
+      return resultHelper(res, feed.items, 200, "RSS Success");
+    } catch (error: any) {
+      return resultHelper(res, error, 404, "Error");
+    }
+  },
+  CustomURL: async (req: Request, res: Response) => {
+    try {
+      const URL = req.query.url as string;
+      //   const URL = req.body.URL
+      const parser = new Parser();
       const feed = await parser.parseURL(URL);
       return resultHelper(res, feed.items, 200, "RSS Success");
     } catch (error: any) {
