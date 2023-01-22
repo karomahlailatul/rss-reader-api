@@ -5,10 +5,10 @@ import Parser from "rss-parser";
 const RSS = {
   CNN: async (req: Request, res: Response) => {
     try {
-      const Type = req.params.type;
+      const Type = req.params.type.toLocaleLowerCase();
       const parser = new Parser();
       let URL = "";
-      switch (Type.toLocaleUpperCase()) {
+      switch (Type) {
         case "cnn":
           URL = "https://www.cnnindonesia.com/nasional/rss" as string;
           break;
