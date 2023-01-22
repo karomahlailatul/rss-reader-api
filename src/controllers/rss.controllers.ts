@@ -6,7 +6,6 @@ const RSS = {
   CNN: async (req: Request, res: Response) => {
     try {
       const Type = req.params.type;
-      console.log(Type);
       const parser = new Parser();
       let URL = "";
       switch (Type.toLocaleUpperCase()) {
@@ -32,7 +31,6 @@ const RSS = {
             404,
             "RSS Type Error , Hanya Tersedia CNN, CNBC, KUMPARAN, MEDIAINDONESIA, Dan VICE"
           );
-          break;
       }
       const feed = await parser.parseURL(URL);
       return resultHelper(res, feed.items, 200, "RSS Success");

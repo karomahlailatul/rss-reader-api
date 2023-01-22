@@ -13,15 +13,14 @@ export const resultHelper = (res: any, result: any, status: any, message: String
   }
 
   try {
-    if (result === null) throw "result kosong";
+    if (!result) throw "result kosong";
     resultPrint.data = result;
   } catch (error) {}
 
   try {
-    if (message === undefined || null) throw "message kosong";
+    if (!message) throw "message kosong";
     resultPrint.message = message;
   } catch (error) {
-    // console.log(error)
   }
 
   res.status(status).send(resultPrint);
