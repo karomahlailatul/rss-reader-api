@@ -30,7 +30,7 @@ app.all("*", (req: Request, res: Response, next: NextFunction) => {
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   const Error = err as any;
   if (res.status(Error.status)) {
-    res.send({ message: "Meledaakkk Error" });
+    res.send({ message: "500: Error something when wrong" });
     // res.send(createError(Error, err));
   }
   next();
